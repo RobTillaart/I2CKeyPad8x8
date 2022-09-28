@@ -8,8 +8,6 @@
 
 # I2CKeyPad8x8
 
-# I2CKeyPad8x88x8
-
 Arduino library for 8x8 or smaller KeyPad connected to an I2C PCF8575.
 
 
@@ -18,7 +16,7 @@ Arduino library for 8x8 or smaller KeyPad connected to an I2C PCF8575.
 EXPERIMENTAL
 
 The I2CKeyPad8x8 library implements the reading of a 8x8 keypad by means of a PCF8575.
-Smaller keypads, meaning less columns or rows (5x4) can be read with it too.
+Smaller keypads, meaning less columns or rows (e.g. 5x4) can be read with it too.
 
 Relates to https://github.com/RobTillaart/I2CKeyPad. which is an version using PCF8574.
 
@@ -27,7 +25,6 @@ Relates to https://github.com/RobTillaart/I2CKeyPad. which is an version using P
 
 The PCF8575 is connected between the processor and the (default) 8x8 keypad.
 See the conceptual schema below. 
-It might take some trying to get the correct pins connected.
 
 ```
           PROC             PCF8575              KEYPAD
@@ -52,17 +49,17 @@ It might take some trying to get the correct pins connected.
 
 ## Interface
 
-- **I2CKeyPad8x8 keypad(const uint8_t deviceAddress, TwoWire \*wire = &Wire)** 
+- **I2CKeyPad8x8(const uint8_t deviceAddress, TwoWire \*wire = &Wire)** 
 The constructor sets the device address and optionally 
 allows to selects the I2C bus to use.
-- **bool keyPad.begin()** The return value shows if the PCF8575 with the given address is connected properly.
+- **bool begin()** The return value shows if the PCF8575 with the given address is connected properly.
 - **bool begin(uint8_t sda, uint8_t scl)** for ESP32.
 The return value shows if the PCF8575 with the given address is connected properly.
-- **keyPad.isConnected()** returns false if the PCF8575 cannot be connected to.
-- **uint8_t keyPad.getKey()** Returns default 0..63 for regular keys, 
+- **bool isConnected()** returns false if the PCF8575 cannot be connected to.
+- **uint8_t getKey()** Returns default 0..63 for regular keys, 
 Returns 64 if no key is pressed and 65 in case of an error.
-- **keyPad.getLastKey()** Returns the last **valid** key pressed 0..63. Initially it will return 64 (NOKEY).
-- **keyPad.isPressed()** Returns true if one or more keys of the keyPad is pressed, 
+- **uint8_t getLastKey()** Returns the last **valid** key pressed 0..63. Initially it will return 64 (NOKEY).
+- **bool isPressed()** Returns true if one or more keys of the keyPad is pressed, 
 however it is not checked if multiple keys are pressed.
 
 
