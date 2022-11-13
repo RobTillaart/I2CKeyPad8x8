@@ -30,19 +30,15 @@ See the conceptual schema below.
           PROC             PCF8575              KEYPAD
         +--------+        +--------+          +--------+
         |        |        |       0|----------|R       |
-        |    SDA |--------|       1|----------|O       |
-        |    SCL |--------|       2|----------|W       |
-        |        |        |       3|----------|S       |
+        |    SDA |--------|       .|----------|O       |
+        |    SCL |--------|       .|----------|W       |
+        |        |        |       7|----------|S       |
         |        |        |       .|          |        |
         |        |        |       .|          |        |
         |        |        |       8|----------|C       |
-        |        |        |       9|----------|O       |
-        |        |        |      10|----------|L       |
-        |        |        |      11|----------|S       |
-        |        |        |       .|          |        |
-        |        |        |       .|          |        |
-        |        |        |      16|----------|        |
-
+        |        |        |       .|----------|O       |
+        |        |        |       .|----------|L       |
+        |        |        |      15|----------|S       |
         +--------+        +--------+          +--------+ 
 ```
 
@@ -110,10 +106,17 @@ See examples
 
 ## Future
 
+
+#### must
+- update documentation
+
+#### should
 - test extensively
   - basic working (OK)
   - interrupts
   - keymapping
   - performance
-- update documentation
 - keep in sync with **I2CKeyPad** as much as possible.
+
+#### would
+
