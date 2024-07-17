@@ -15,7 +15,7 @@ I2CKeyPad8x8::I2CKeyPad8x8(const uint8_t deviceAddress, TwoWire *wire)
   _address = deviceAddress;
   _wire    = wire;
   _debounceThreshold = 0;
-  _lastRead = 0;
+  _lastTimeRead = 0;
 }
 
 
@@ -36,17 +36,21 @@ bool I2CKeyPad8x8::isConnected()
 
 uint8_t I2CKeyPad8x8::getKey()
 {
+  uint32_t now = millis();
   if (_debounceThreshold > 0)
   {
-    uint32_t now = micros();
-    if (now - _debounceThreshold < _lastRead)
+    if (now - _debounceThreshold < _lastTimeRead)
     {
       return I2C_KEYPAD8x8_THRESHOLD;
     }
-    _lastRead = now;
   }
 
-  return _getKey8x8();
+  uint8_t key = _getKey8x8();
+  if (key == I2C_KEYPAD8x8_FAIL) return key;  //  propagate error.
+  //  valid keys + NOKEY
+  _lastKey = key;
+  _lastTimeRead = now;
+  return key;
 }
 
 
@@ -97,6 +101,12 @@ void I2CKeyPad8x8::setDebounceThreshold(uint16_t value)
 uint16_t I2CKeyPad8x8::getDebounceThreshold()
 {
   return _debounceThreshold;
+}
+
+
+uint32_t I2CKeyPad8x8::getLastTimeRead()
+{
+  return _lastTimeRead;
 }
 
 

@@ -31,7 +31,6 @@ public:
   uint8_t  getLastKey();
   bool     isPressed();
 
-
   //  get 'translated' keys
   //  user must load KeyMap, there is no check.
   uint8_t  getChar();
@@ -41,6 +40,7 @@ public:
   //  value in microseconds, max 65535 us
   void     setDebounceThreshold(uint16_t value = 0);
   uint16_t getDebounceThreshold();
+  uint32_t getLastTimeRead();
 
 
 protected:
@@ -48,12 +48,14 @@ protected:
   uint8_t  _lastKey;
   uint16_t _read(uint16_t mask);
   uint16_t _debounceThreshold;
-  uint32_t _lastRead;
+  uint32_t _lastTimeRead;
+
+  uint8_t  _getKey8x8();
 
   TwoWire* _wire;
 
   char *   _keyMap = NULL;
-  uint8_t  _getKey8x8();
+
 };
 
 
