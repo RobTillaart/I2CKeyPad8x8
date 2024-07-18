@@ -168,8 +168,6 @@ uint8_t I2CKeyPad8x8::_getKey8x8()
   else if (cols == 0x007F) key += 56;
   else return I2C_KEYPAD8x8_FAIL;
 
-  _lastKey = key;
-
   return key;   // 0..65
 }
 

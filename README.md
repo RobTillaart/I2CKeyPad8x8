@@ -21,13 +21,14 @@ EXPERIMENTAL (first tests ==> OK)
 The I2CKeyPad8x8 library implements the reading of a 8x8 keypad by means of a PCF8575.
 Smaller keypads, meaning less columns or rows (e.g. 5x4) can be read with it too.
 
-#### Breaking change
+### Breaking change
 
 Since 0.3.0 the library can set a debounce threshold. 
 If this is set (> 0) the **getKey()** and **getChar()** functions 
 can return **I2C_KEYPAD_THRESHOLD** (255).
 
-#### Related
+
+### Related
 
 Relates strongly to https://github.com/RobTillaart/I2CKeyPad. which is an 4x4 version using **PCF8574**.
 

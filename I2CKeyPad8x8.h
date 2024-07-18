@@ -37,7 +37,7 @@ public:
   uint8_t  getLastChar();
   void     loadKeyMap(char * keyMap);   //  char[65]
 
-  //  value in microseconds, max 65535 us
+  //  value in milliseconds, max 65535 ms
   void     setDebounceThreshold(uint16_t value = 0);
   uint16_t getDebounceThreshold();
   uint32_t getLastTimeRead();
