@@ -34,7 +34,7 @@ Relates strongly to https://github.com/RobTillaart/I2CKeyPad. which is an 4x4 ve
 
 - https://github.com/RobTillaart/PCF8575
 - https://github.com/RobTillaart/AnalogKeypad
-- https://github.com/RobTillaart/I2CKeyPad4x4
+- https://github.com/RobTillaart/I2CKeyPad
 - https://github.com/RobTillaart/I2CKeyPad8x8
 
 
@@ -107,7 +107,7 @@ Call wire.begin() first!
 - **bool isConnected()** returns false if the PCF8575 cannot be connected to.
 - **uint8_t getKey()** Returns default 0..63 for regular keys, 
 Returns **I2C_KEYPAD8X8_NOKEY** (64) if no key is pressed and and **I2C_KEYPAD8X8_FAIL**
-(17) in case of an error, e.g. multiple keys pressed.
+(65) in case of an error, e.g. multiple keys pressed.
 If a debounce delay is set, it might return **I2C_KEYPAD8X8_THRESHOLD** if called too fast.
 - **uint8_t getLastKey()** Returns the last **valid** key pressed 0..63, or **I2C_KEYPAD8X8_NOKEY** (64) which is also the initial value.
 - **bool isPressed()** Returns true if one or more keys of the keyPad are pressed, 
