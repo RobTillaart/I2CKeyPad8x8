@@ -16,7 +16,7 @@ Arduino library for 8x8 or smaller KeyPad connected to an I2C PCF8575.
 
 ## Description
 
-**xperimental** (first tests ==> OK)
+**Experimental** (first tests ==> OK)
 
 The I2CKeyPad8x8 library implements the reading of a 8x8 keypad by means of a PCF8575.
 Smaller keypads, meaning less columns or rows (e.g. 5x4) can be read with it too.
