@@ -16,7 +16,7 @@ Arduino library for 8x8 or smaller KeyPad connected to an I2C PCF8575.
 
 ## Description
 
-EXPERIMENTAL (first tests ==> OK)
+**xperimental** (first tests ==> OK)
 
 The I2CKeyPad8x8 library implements the reading of a 8x8 keypad by means of a PCF8575.
 Smaller keypads, meaning less columns or rows (e.g. 5x4) can be read with it too.
@@ -108,10 +108,18 @@ Call wire.begin() first!
 - **uint8_t getKey()** Returns default 0..63 for regular keys, 
 Returns **I2C_KEYPAD8X8_NOKEY** (64) if no key is pressed and and **I2C_KEYPAD8X8_FAIL**
 (65) in case of an error, e.g. multiple keys pressed.
-If a debounce delay is set, it might return **I2C_KEYPAD8X8_THRESHOLD** if called too fast.
+If a debounce delay is set, it might return **I2C_KEYPAD8X8_THRESHOLD** (255) if called too fast.
 - **uint8_t getLastKey()** Returns the last **valid** key pressed 0..63, or **I2C_KEYPAD8X8_NOKEY** (64) which is also the initial value.
 - **bool isPressed()** Returns true if one or more keys of the keyPad are pressed, 
 however there is no check if multiple keys are pressed.
+
+
+|  getKey()  |  Meaning                  |  Notes  |
+|:----------:|:--------------------------|:--------|
+|  0..63     |  valid key pressed        |
+|  64        |  I2C_KEYPAD8X8_NOKEY      |
+|  65        |  I2C_KEYPAD8X8_FAIL       |
+|  255       |  I2C_KEYPAD8X8_THRESHOLD  |
 
 
 ### KeyMap functions
@@ -119,7 +127,7 @@ however there is no check if multiple keys are pressed.
 Note: **loadKeyMap()** must be called before **getChar()** and **getLastChar()**!
 
 - **char getChar()** returns the char corresponding to mapped key pressed.
-It returns **I2C_KEYPAD_THRESHOLD** if called too fast.
+It returns **I2C_KEYPAD_THRESHOLD** (255) if called too fast.
 - **char getLastChar()** returns the last char pressed.
 This function is not affected by the debounce threshold.
 - **bool loadKeyMap(char \* keyMap)** keyMap should point to a (global) char array of length 66.
@@ -172,9 +180,9 @@ Feedback welcome!
 ### Basic working
 
 After the **keypad.begin()** the sketch calls the **keyPad.getKey()** to read values from the keypad. 
-- If no key is pressed **I2C_KEYPAD8x8_NOKEY** code (16) is returned.
-- If the read value is not valid, e.g. two keys pressed, **I2C_KEYPAD8x8_FAIL** code (17) is returned.
-- If a debounce threshold is set, **I2C_KEYPAD8x8_THRESHOLD** might be returned.
+- If no key is pressed **I2C_KEYPAD8x8_NOKEY** code (64) is returned.
+- If the read value is not valid, e.g. two keys pressed, **I2C_KEYPAD8x8_FAIL** code (65) is returned.
+- If a debounce threshold is set, **I2C_KEYPAD8x8_THRESHOLD** (255) might be returned.
 See section above.
 - Otherwise a number 0..63 is returned.
 
