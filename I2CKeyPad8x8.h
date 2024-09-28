@@ -17,6 +17,7 @@
 #define I2C_KEYPAD8x8_FAIL                65
 #define I2C_KEYPAD8x8_THRESHOLD           255
 
+
 class I2CKeyPad8x8
 {
 public:
@@ -26,7 +27,7 @@ public:
   bool     begin();
   bool     isConnected();
 
-  //  get raw key's 0..65
+  //  get raw key's 0..63, 64, 65
   uint8_t  getKey();
   uint8_t  getLastKey();
   bool     isPressed();
