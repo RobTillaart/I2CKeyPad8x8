@@ -26,6 +26,7 @@ public:
   //  call Wire.begin() first!
   bool     begin();
   bool     isConnected();
+  uint8_t  getAddress();
 
   //  get raw key's 0..63, 64, 65
   uint8_t  getKey();
